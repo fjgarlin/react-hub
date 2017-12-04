@@ -1,14 +1,24 @@
 import React from 'react'
 import Repository from './repository'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 class App extends React.Component {
-  // EXERCISE: add propTypes to this component
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    repositories: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+      })
+    ).isRequired,
+    hiddenIds: PropTypes.arrayOf(PropTypes.number).isRequired,
+  }
 
   hideRepository = id => {
-    // EXERCISE:
-    // when the repository is hidden, you need to dispatch an action to the store
-    // to update the list of hidden IDs
+    this.props.dispatch({
+      type: 'HIDE_REPOSITORY',
+      id: id,
+    })
   }
 
   render() {
@@ -21,9 +31,7 @@ class App extends React.Component {
         <ul className="results">
           {this.props.repositories
             .filter(
-              // exercise: filter this such that only repos that have not been removed
-              // by the user are shown
-              repository => true
+              repository => this.props.hiddenIds.indexOf(repository.id) === -1
             )
             .map(repository => (
               <li key={repository.id}>

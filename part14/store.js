@@ -23,6 +23,11 @@ const startingState = {
 
 const reducer = (state = startingState, action) => {
   switch (action.type) {
+    case 'HIDE_REPOSITORY':
+      return {
+        ...state,
+        hiddenIds: [...state.hiddenIds, action.id],
+      }
     default:
       return state
   }

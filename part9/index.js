@@ -1,14 +1,15 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 import App from './app'
+import About from './about'
 
 const AppWithRouter = () => (
   <BrowserRouter basename="/part9">
     <div>
+      <p><Link to="/">Home</Link> | <Link to="/about">About</Link></p>
       <Route exact path="/" component={App} />
-      {/* EXERCISE: create a new component and add a route for the /about page */}
-      {/* EXERCISE: can you add a <Link /> on the index page to the about page? */}
+      <Route path="/about" component={About} />
     </div>
   </BrowserRouter>
 )

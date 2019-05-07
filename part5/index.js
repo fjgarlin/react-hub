@@ -26,7 +26,9 @@ class App extends React.Component {
   }
 
   hideRepository = id => {
-    // exercise: when an ID is removed, update the state and add it to the list
+    this.setState(prevState => ({
+      removedIds: [...prevState.removedIds, id],
+    }))
   }
 
   render() {
@@ -39,9 +41,7 @@ class App extends React.Component {
         <ul className="results">
           {repositories
             .filter(
-              // exercise: filter this such that only repos that have not been removed
-              // by the user are shown
-              repository => true
+              repository => this.state.removedIds.indexOf(repository.id) === -1
             )
             .map(repository => (
               <li key={repository.id}>

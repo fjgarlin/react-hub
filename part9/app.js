@@ -73,9 +73,6 @@ export default class App extends React.Component {
             .filter(r => this.state.removedIds.indexOf(r.id) === -1)
             .map(repository => (
               <li key={repository.id}>
-                {/* EXERCISE: you'll need to call the given prop in <Repository />
-                   * so that this component has the state updated
-                   */}
                 <Repository
                   repository={repository}
                   onRepositoryClick={this.onRepositoryClick}

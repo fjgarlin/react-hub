@@ -10,13 +10,12 @@ const Repository = props => (
   </li>
 )
 
-/* EXERCISE: add prop types here
- * https://reactjs.org/docs/typechecking-with-proptypes.html
- * hint: you'll probably want to use PropTypes.shape(...)
- */
 Repository.propTypes = {
-  // fill this in
-  // repository: ...
+  repository: PropTypes.shape({
+    stars: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+  }).isRequired,
 }
 
 export default Repository
